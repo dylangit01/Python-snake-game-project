@@ -3,6 +3,10 @@ import keyword
 # Starting position should be positioned from bigger x position to a smaller one, otherwise, the first segment will have some issues
 STARTING_POSITION = [(0, 0), (-20, 0), (-40, 0)]
 MOVE_DISTANCE = 20
+UP = 90
+DOWN = 270
+LEFT = 180
+RIGHT = 0
 
 screen = Screen()
 screen.listen()
@@ -11,6 +15,7 @@ class Snake:
     def __init__(self):
         self.segments = []
         self.create_snake()
+        self.head = self.segments[0]
 
     def create_snake(self):
         for position in STARTING_POSITION:
@@ -24,17 +29,21 @@ class Snake:
 
     def turn_left(self):
         # control the 1st item only, so the other elements will follow the head
-        self.segments[0].setheading(180)
+        if self.head.heading() != RIGHT:
+            self.head.setheading(LEFT)
 
     def turn_right(self):
-        self.segments[0].setheading(0)
+        if self.head.heading() != LEFT:
+            self.head.setheading(0)
 
     def turn_up(self):
         # control the 1st item only, so the other elements will follow the head
-        self.segments[0].setheading(90)
+        if self.head.heading() != DOWN:
+            self.head.setheading(90)
 
     def turn_down(self):
-        self.segments[0].setheading(270)
+        if self.head.heading() != UP:
+            self.head.setheading(270)
 
     def movement(self):
         # move the last snake to the previous snake position,
