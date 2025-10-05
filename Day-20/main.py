@@ -1,33 +1,24 @@
-from turtle import Turtle, Screen
+from turtle import Screen
+import time
+from snake import Snake
 
-s = Screen()
-s.setup(600, 600)
-s.bgcolor('black')
-s.title('The Snake Game')
+screen = Screen()
+screen.setup(1200, 600)
+screen.bgcolor('black')
+screen.title('The Snake Game')
+# not showing up the snake at first
+screen.tracer(0)
 
-all_turtles = []
-t_width = -20
-for _ in range(3):
-    t = Turtle('square')
-    t.color('white')
-    t.goto(t_width, 0)
-    t_width += 20
-    all_turtles.append(t)
+mySnake = Snake()
 
 game_on = True
 while game_on:
-    for t in all_turtles:
-        t.penup()
-        t.forward(10)
+    # only update the snake when all snakes moved forward by 20
+    screen.update()
+    time.sleep(0.3)
+    mySnake.movement()
 
 
 
 
-
-
-
-
-
-
-
-s.exitonclick()
+screen.exitonclick()
