@@ -67,3 +67,9 @@ class Snake:
         screen.onkey(self.turn_down, 'Down')
         self.segments[0].forward(MOVE_DISTANCE)
 
+    def reset_snake(self):
+        for _ in self.segments:
+            _.hideturtle()
+        self.segments.clear()
+        self.create_snake()
+        self.head = self.segments[0]
